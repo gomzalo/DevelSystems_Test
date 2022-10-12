@@ -62,6 +62,10 @@ div.parent {
   grid-area: content;
 }
 
+.contents-area {
+  grid-area: content1;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 h1 { font-size: larger }

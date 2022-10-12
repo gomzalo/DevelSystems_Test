@@ -28,4 +28,8 @@ export class AppComponent {
   logOut = () => {
     localStorage.removeItem('jwt');
   }
+
+  accessLogin = () => {
+    this.router.navigateByUrl('/login');
+  }
 }

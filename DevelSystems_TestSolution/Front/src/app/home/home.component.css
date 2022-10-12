@@ -1,12 +1,44 @@
-.wrapper {
+#content {
   display: grid;
   width: 100%;
   height: 100%;
-  /*grid-row-gap: 2em;*/
-  grid-template-rows: auto;
-  grid-template-columns: auto;
+  grid-row-gap: 2em;
+  grid-template-rows: 750px 1fr 530px;
+  grid-template-columns: 500px 1fr;
   grid-template-areas:
-    "header header buttons"
-    "content content"
-    "footer footer footer";
+    "nav main"
+}
+
+#page > nav {
+  grid-area: nav;
+  background-color: #ffa08c;
+}
+
+#page > main {
+  grid-area: main;
+  background-color: #ffff64;
+}
+
+app-window mat-card {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.example-card {
+  max-width: 750px;
+}
+
+.action-card {
+  max-width: 250px;
+}
+
+.sub-card {
+  display: flex;
+  border-radius: 6px;
+  padding: 1.8em;
+}
+
+.card-img {
+  max-width: 300px;
 }

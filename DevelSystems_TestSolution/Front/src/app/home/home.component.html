@@ -1,18 +1,98 @@
 <div *ngIf="isUserAuthenticated()" style="color:mediumpurple;">
-  <mat-tab-group>
+  <!--<mat-tab-group>
     <mat-tab label="Crear"> Crear </mat-tab>
     <mat-tab label="Consultar"> Consultar </mat-tab>
     <mat-tab label="Editar"> Editar </mat-tab>
-  </mat-tab-group>
+  </mat-tab-group>-->
+  <section id="content">
+    <nav>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            ¡Bienvenido de nuevo!
+          </mat-card-title>
+          <mat-card-subtitle>
+            ¿Qué deseas hacer?
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          Si tienes algún inconveniente, contacta al administrador.
+        </mat-card-content>
+      </mat-card>
+    </nav>
+    <main>
+      <mat-card class="sub-card">
+        <mat-card class="action-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Administrar encuesta</mat-card-title>
+            <mat-card-subtitle>Crear, actualizar o eliminar</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image class="card-img" src="../../assets/images/Screen-Shot-2020-06-17-at-2.51.59-PM.png" alt="Administrar">
+          <mat-card-content>
+            <p>
+              En este apartado usted puede crear una nueva encuesta, de forma dinamica;<br />
+              al finalizar su creación se le brindará un enlace para que pueda compartirla con sus encuestados.
+              <br /><br />
+              A su vez, si asi lo desea, puede editar una encuesta ya existente; o bien, eliminarla.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>Administrar</button>
+          </mat-card-actions>
+        </mat-card>
+        <mat-card>
+        </mat-card>
+        <mat-card class="action-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Visualizar respuestas</mat-card-title>
+            <mat-card-subtitle>Ver los resultados de una encuesta existente</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image class="card-img" src="../../assets/images/shutterstock_730381336.jpg" alt="Consultar">
+          <mat-card-content>
+            <p>
+              En este apartado usted puede visualizar las respuestas de una encuesta existente.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>Visualizar</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-card>
+    </main>
+  </section>
 </div>
 
-<div class="buttons-area">
-  <div *ngIf="!isUserAuthenticated()" style="color:mediumpurple;">
-    <button mat-raised-button color="primary" type="submit" (click)="accessLogin()">Ingresar</button>
+<div *ngIf="!isUserAuthenticated()" style="color:mediumpurple;">
+  <section id="content">
+    <nav>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            ¡Bienvenido a Acme-E!
+          </mat-card-title>
+          <mat-card-subtitle>
+            Si ya cuentas con un enlace de una encuesta <br />
+            accede a esta, mediante el enlace que se te proporciono.
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          Si tienes algún inconveniente, contacta al administrador.
+        </mat-card-content>
+        <mat-card-footer>
+          Si deseas consultar o administrar una encuesta, <br />
+          debes acceder con tus credenciales.
+        </mat-card-footer>
+      </mat-card>
+    </nav>
+    <main>
+      <mat-card class="example-card">
+        <img mat-card-image src="../../assets/images/questionnaire-1200x900-1.png" alt="Encuesta">
+      </mat-card>
+    </main>
+  </section>
   </div>
-  <mat-card>
-  </mat-card>
-</div>
 
-<!-- The routed views render in the <router-outlet>-->
-<router-outlet></router-outlet>
+  <!-- The routed views render in the <router-outlet>-->
+  <router-outlet></router-outlet>

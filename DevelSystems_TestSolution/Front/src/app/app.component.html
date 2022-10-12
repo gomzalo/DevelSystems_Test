@@ -9,6 +9,11 @@
         <button mat-raised-button color="warn" type="submit" (click)="logOut()">Cerrar sesión</button>
       </div>
     </div>
-</mat-toolbar>
+    <div class="buttons-area">
+      <div *ngIf="!isUserAuthenticated()" style="color:mediumpurple;">
+        <button mat-raised-button color="primary" type="submit" (click)="accessLogin()">Ingresar</button>
+      </div>
+    </div>
+  </mat-toolbar>
 </div>
 <router-outlet></router-outlet>
