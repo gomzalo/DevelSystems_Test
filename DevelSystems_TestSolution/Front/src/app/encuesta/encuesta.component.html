@@ -1,1 +1,24 @@
-<p>encuesta works!</p>
+<form [formGroup]="myForm" (submit)="enviar">
+  <mat-card-title>
+    {{jsonFormData.nombre}}
+  </mat-card-title>
+  <br /><br />
+  <mat-card-content>
+    {{jsonFormData.descripcion}}
+  </mat-card-content>
+  <br /><br />
+  <mat-form-field *ngFor="let p of jsonFormData.pregunta">
+    <br /><br />
+    <mat-label *ngIf="p.nombre != ''">{{p.nombre}}</mat-label>
+    <br />
+    <mat-form-field>
+      <mat-label *ngIf="p.titulo != ''">{{p.titulo}}</mat-label>
+      <br />
+      <input matInput type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Titulo pregunta" required>
+    </mat-form-field>
+  </mat-form-field>
+  <br><br />
+  <mat-card-content>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Enviar</button>
+  </mat-card-content>
+</form>
