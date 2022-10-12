@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { AuthenticatedResponse } from './../_interfaces/auth-res.model';
 import { LoginModel } from './../_interfaces/login.model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { getToken, setToken } from '../app.module';
 
 @Component({
   selector: 'login',
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
         .subscribe({
           next: (response: AuthenticatedResponse) => {
             const token = response.token;
-            localStorage.setItem('jwt', token);
+            //localStorage.setItem('jwt', token);
+            setToken(token);
             this.invalidLogin = false;
             this.router.navigate(['/']);
           },

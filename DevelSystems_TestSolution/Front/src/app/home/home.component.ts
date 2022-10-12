@@ -30,4 +30,12 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+  visualizar = () => {
+    this.router.navigateByUrl('/view');
+  }
+
+  administrar = () => {
+    this.router.navigateByUrl('/admin');
+  }
+
 }

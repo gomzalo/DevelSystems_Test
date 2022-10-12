@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Back.Models;
+using Back.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -44,8 +47,14 @@ namespace Back
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["DevelSystems_SuperSecretKey"]))
                     };
                 });
-            ;
+            
             services.AddControllers();
+            services.AddHttpContextAccessor();
+
+
+            AddDependencyInjection(services);
+            //services.AddDbContext<ENCUESTAS_DSContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            //options => options.EnableRetryOnFailure()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +68,7 @@ namespace Back
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseHttpsRedirection();
+            
 
             app.UseRouting();
 
@@ -70,6 +80,11 @@ namespace Back
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void AddDependencyInjection(IServiceCollection services)
+        {
+            services.AddScoped<InterfaceEncuesta, ImplementacionEncuesta>();
         }
     }
 }

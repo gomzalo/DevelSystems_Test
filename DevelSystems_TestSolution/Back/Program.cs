@@ -1,4 +1,8 @@
+using Back.Models;
+using Back.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -39,7 +43,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<InterfaceEncuesta, ImplementacionEncuesta>();
+builder.Services.AddDbContext<ENCUESTAS_DSContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+options => options.EnableRetryOnFailure()));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -53,7 +59,6 @@ app.UseHttpsRedirection();
 
 app.UseCors("EnableCORS");
 
-
 app.UseAuthentication();
 
 app.UseAuthorization();
@@ -61,3 +66,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+

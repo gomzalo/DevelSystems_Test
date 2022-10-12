@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent, DialogAlerta } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { AdminComponent, AdminDialogAlerta } from './admin/admin.component';
+import { ViewComponent, ViewDialogAlerta } from './view/view.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
@@ -22,12 +24,20 @@ export function getToken() {
   return localStorage.getItem('jwt');
 }
 
+export function setToken(jwt: any) {
+  localStorage.setItem('jwt', jwt);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    DialogAlerta
+    DialogAlerta,
+    AdminComponent,
+    AdminDialogAlerta,
+    ViewComponent,
+    ViewDialogAlerta
   ],
   imports: [
     BrowserModule,
