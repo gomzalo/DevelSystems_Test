@@ -1,0 +1,348 @@
+{
+	"info": {
+		"_postman_id": "39b9c3ac-4b76-4de6-bd49-e011b7461f5e",
+		"name": "DevelSystems_APICalls",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5289087"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Username\": \"admin\",\r\n    \"Password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7249/api/auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7249",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener encuesta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7249/api/Encuesta?nombre=en3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7249",
+					"path": [
+						"api",
+						"Encuesta"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "en3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las encuestas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjU1OTg5NjEsImlzcyI6Ikp3dDpJc3N1ZXIiLCJhdWQiOiJKd3Q6QXVkaWVuY2UifQ.ZEtvkadCuoBsxbbe_00f8kuBHbuvTZcO58B7peP0ENs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7249/api/Encuesta/All",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7249",
+					"path": [
+						"api",
+						"Encuesta",
+						"All"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar encuesta",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7249/api/Encuesta?nombre=en5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7249",
+					"path": [
+						"api",
+						"Encuesta"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "en5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear encuestas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjU2MDAzMTUsImlzcyI6Ikp3dDpJc3N1ZXIiLCJhdWQiOiJKd3Q6QXVkaWVuY2UifQ.CoDKvoYFZwYgZvSvIt9PWZwvJ2lkGd6ULKI8_B5N0h4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Encuesta 2\",\r\n  \"descripcion\": \"Prueba Devel\",\r\n  \"link\": \"Encuesta%2\",\r\n  \"pregunta\": [\r\n    {\r\n      \"nombre\": \"¿Cuántos años tienes?\",\r\n      \"titulo\": \"Edadd\",\r\n      \"tipo\": \"string\",\r\n      \"requerido\": \"s\",\r\n      \"nombreEncuesta\": \"Encuesta 2\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7249/api/Encuesta",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7249",
+					"path": [
+						"api",
+						"Encuesta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reponder pregunta",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"{\r",
+							"  \"nombre\": \"en5\",\r",
+							"  \"descripcion\": \"string\",\r",
+							"  \"link\": \"string\",\r",
+							"  \"pregunta\": [\r",
+							"    {\r",
+							"      \"nombre\": \"string\",\r",
+							"      \"titulo\": \"string\",\r",
+							"      \"tipo\": \"string\",\r",
+							"      \"requerido\": \"s\",\r",
+							"      \"nombreEncuesta\": \"en5\"\r",
+							"    }\r",
+							"  ]\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjU2MTA0OTIsImlzcyI6Ikp3dDpJc3N1ZXIiLCJhdWQiOiJKd3Q6QXVkaWVuY2UifQ.Hukm0BYD1qEXp0wR6pXbQBGaK3zieqwZYgVfUYrN00U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nombre_Pregunta\": \"¿Cuántos años tienes?\",\r\n    \"Nombre_Encuesta\": \"Encuesta 2\",\r\n    \"Respuesta\": \"60\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7249/api/Encuesta",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7249",
+					"path": [
+						"api",
+						"Encuesta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar encuesta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjU2MTM0NjksImlzcyI6Ikp3dDpJc3N1ZXIiLCJhdWQiOiJKd3Q6QXVkaWVuY2UifQ.d1bPTxI33T72EVDD_AHGcnGgPUJMv9q16bE7rZOR-UQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Encuesta 2\",\r\n  \"descripcion\": \"Actualizando encuesta x5\",\r\n  \"link\": \"linkao.com/en2\",\r\n  \"pregunta\": [\r\n    {\r\n      \"nombre\": \"¿Cuántos años tienes?\",\r\n      \"titulo\": \"Edad x332\",\r\n      \"tipo\": \"numero\",\r\n      \"requerido\": \"n\",\r\n      \"nombreEncuesta\": \"Encuesta 2\"\r\n    },\r\n    {\r\n      \"nombre\": \"¿Cuántos hermanos tienes?\",\r\n      \"titulo\": \"Hermaninhos\",\r\n      \"tipo\": \"string\",\r\n      \"requerido\": \"n\",\r\n      \"nombreEncuesta\": \"Encuesta 2\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7249/api/Encuesta",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7249",
+					"path": [
+						"api",
+						"Encuesta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver respuesta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"en5\",\r\n  \"descripcion\": \"string\",\r\n  \"link\": \"string\",\r\n  \"pregunta\": [\r\n    {\r\n      \"nombre\": \"string\",\r\n      \"titulo\": \"string\",\r\n      \"tipo\": \"string\",\r\n      \"requerido\": \"s\",\r\n      \"nombreEncuesta\": \"en5\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7249/api/Encuesta",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7249",
+					"path": [
+						"api",
+						"Encuesta"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
