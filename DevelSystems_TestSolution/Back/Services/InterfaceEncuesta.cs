@@ -1,12 +1,11 @@
-﻿using Back.Models;
+﻿using Back.Models.DB;
 
 namespace Back.Services
 {
     public interface InterfaceEncuesta
     {
-        IEnumerable<Respuestum> getRespuestas(string nombre);
 
-        Encuestum getEncuesta(string nombre);
+        Encuestum getEncuesta(int id);
 
         IEnumerable<Encuestum> getEncuestas();
 
@@ -16,7 +15,7 @@ namespace Back.Services
 
         bool updateEncuesta(Encuestum encuesta);
 
-        bool delEncuesta(string nombre);
+        bool delEncuesta(int id);
 
     }
 }

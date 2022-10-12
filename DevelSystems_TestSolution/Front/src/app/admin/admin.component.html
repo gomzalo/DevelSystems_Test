@@ -1,5 +1,37 @@
-<!--<div *nfIf="isUserAuthenticated()" style="color:mediumpurple">
-  <ul>
-    <li *ngFor="let e of encuestas">{{ e }}</li>
-  </ul>
-</div>-->
+<mat-tab-group>
+  <!-- :::::::::::::: CREAR :::::::::::::: -->
+  <mat-tab label="Crear">
+    <div class="large-box">
+      <form>
+        <mat-card-title>
+          Crear una nueva encuesta
+        </mat-card-title>
+        <br /><br />
+        <mat-card-content>
+          Inicia por ingresar un nombre y una descripción.
+        </mat-card-content>
+        <br /><br />
+        <mat-form-field>
+          <mat-label>Nombre de la encuesta</mat-label>
+          <input matInput type="text" id="nombre" name="nombre" [(ngModel)]="encuesta_nueva.nombre" ngModel class="form-control" placeholder="Nombre de la encuesta" required autofocus>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Descripción</mat-label>
+          <input matInput type="text" id="descripcion" name="descripcion" [(ngModel)]="encuesta_nueva.descripcion" ngModel class="form-control" placeholder="Descripción" required>
+          <br />
+        </mat-form-field>
+        <br><br />
+        <button mat-raised-button color="primary" type="submit">Ingresar</button>
+      </form>
+    </div>
+  </mat-tab>
+  <!-- :::::::::::::: CONSULTAR :::::::::::::: -->
+  <mat-tab label="Consultar">
+
+  </mat-tab>
+  <!-- :::::::::::::: EDITAR  :::::::::::::: -->
+  <mat-tab label="Editar">
+
+  </mat-tab>
+</mat-tab-group>

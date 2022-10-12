@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { getToken } from '../app.module';
+import { EncuestaModel } from '../_interfaces/encuesta.model';
+import { FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -11,8 +13,15 @@ import { getToken } from '../app.module';
 })
 export class AdminComponent implements OnInit {
   encuestas: any;
+  encuesta_nueva: EncuestaModel = {
+    nombre: '',
+    descripcion: '',
+    link: 'https:localhost:4200/',
+    opciones: [{ clave: '', valor: '' }]
+  };
 
   constructor(private router: Router, private http: HttpClient, public dialog: MatDialog) { }
+
 
   ngOnInit(): void {
     const token = localStorage.getItem('jwt');
@@ -28,6 +37,10 @@ export class AdminComponent implements OnInit {
     //    console.log(err);
     //  });
   }
+
+  //crear = (form: NgForm) => {
+
+  //}
 
   goHome = () => {
     this.router.navigateByUrl('/');

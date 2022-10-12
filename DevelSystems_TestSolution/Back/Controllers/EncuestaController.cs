@@ -1,4 +1,4 @@
-﻿using Back.Models;
+﻿using Back.Models.DB;
 using Back.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -28,9 +28,8 @@ namespace Back.Controllers
         }
         // :::::::::::::    GET ENCUESTA  :::::::::::::    
         [HttpGet]
-        [Authorize]
-        public IActionResult GetEncuesta(string nombre){
-            return Ok(_encuestaService.getEncuesta(nombre));
+        public IActionResult GetEncuesta(int id){
+            return Ok(_encuestaService.getEncuesta(id));
         }
         // :::::::::::::    GET ENCUESTAS  :::::::::::::    
         [HttpGet]
@@ -50,17 +49,9 @@ namespace Back.Controllers
         // :::::::::::::    ELIMINAR ENCUESTA :::::::::::::    
         [HttpDelete]
         [Authorize]
-        public IActionResult EliminarEncuesta(string nombre)
+        public IActionResult EliminarEncuesta(int id)
         {
-            return Ok(_encuestaService.delEncuesta(nombre));
-        }
-        // :::::::::::::    GET RESPUESTA   :::::::::::::    
-        [HttpGet]
-        [Authorize]
-        [Route("GetAnswer")]
-        public IActionResult GetRespuesta(string nombre)
-        {
-            return Ok(_encuestaService.getRespuestas(nombre));
+            return Ok(_encuestaService.delEncuesta(id));
         }
         // :::::::::::::    AGREGAR RESPUESTA   :::::::::::::    
         [HttpPut]

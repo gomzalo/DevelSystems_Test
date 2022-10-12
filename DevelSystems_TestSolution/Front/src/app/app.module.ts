@@ -4,14 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent, DialogAlerta } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent, AdminDialogAlerta } from './admin/admin.component';
 import { ViewComponent, ViewDialogAlerta } from './view/view.component';
+import { EncuestaComponent, EncuestaDialogAlerta } from './encuesta/encuesta.component';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -37,7 +38,9 @@ export function setToken(jwt: any) {
     AdminComponent,
     AdminDialogAlerta,
     ViewComponent,
-    ViewDialogAlerta
+    ViewDialogAlerta,
+    EncuestaComponent,
+    EncuestaDialogAlerta
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ export function setToken(jwt: any) {
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    // Material imports
     MatInputModule,
     MatButtonModule,
     MatTabsModule,

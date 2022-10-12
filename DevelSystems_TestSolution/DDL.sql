@@ -13,26 +13,27 @@ DROP TABLE pregunta;
 DROP TABLE encuesta;
 
 CREATE TABLE encuesta(
+	ID INT IDENTITY(1, 1) PRIMARY KEY,
 	Nombre VARCHAR(100) NOT NULL,
-	Descripcion VARCHAR(200),
-	Link VARCHAR(250),
-	PRIMARY KEY (Nombre)
+	Descripcion VARCHAR(200) NOT NULL,
+	Link VARCHAR(250)
 );
 
 CREATE TABLE pregunta(
+	ID INT IDENTITY(1, 1) PRIMARY KEY,
 	Nombre VARCHAR(100) NOT NULL,
 	Titulo VARCHAR(50) NOT NULL,
 	Tipo VARCHAR(25),
 	Requerido CHAR,
-	Nombre_Encuesta VARCHAR (100) NOT NULL,
-	FOREIGN KEY (Nombre_Encuesta) REFERENCES encuesta(Nombre) ON DELETE CASCADE,
-	PRIMARY KEY (Nombre, Nombre_Encuesta)
+	ID_Encuesta INT,
+	FOREIGN KEY (ID_Encuesta) REFERENCES encuesta(ID) ON DELETE CASCADE,
 );
 
 CREATE TABLE respuesta(
-	Nombre_Pregunta VARCHAR(100) NOT NULL,
-	Nombre_Encuesta VARCHAR(100) NOT NULL,
+	ID INT IDENTITY(1, 1) PRIMARY KEY,
+	ID_Pregunta INT,
+	ID_Encuesta INT,
 	Respuesta VARCHAR(100) NOT NULL,
-	FOREIGN KEY (Nombre_Pregunta, Nombre_Encuesta) REFERENCES pregunta(Nombre, Nombre_Encuesta) ON DELETE CASCADE,
-	PRIMARY KEY (Nombre_Pregunta, Nombre_Encuesta)
+	FOREIGN KEY (ID_Pregunta) REFERENCES pregunta(ID) ON DELETE NO ACTION,
+	FOREIGN KEY (ID_Encuesta) REFERENCES encuesta(ID) ON DELETE NO ACTION
 );

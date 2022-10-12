@@ -1,6 +1,4 @@
-﻿
-
-using Back.Models;
+﻿using Back.Models.DB;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -19,7 +17,11 @@ namespace Back.Services
             try {
                 _context.Encuesta.Add(encuesta);
                 _context.SaveChanges();
-                return "https://localhost:7249/api/Encuesta/?name=" + encuesta.Nombre;
+                string link = "https://localhost:4200/encuesta?id=" + encuesta.Id;
+                encuesta.Link = link;
+                _context.Update(encuesta);
+                _context.SaveChanges();
+                return link;
             }
             catch (Exception e)
             {
@@ -31,6 +33,7 @@ namespace Back.Services
         {
             try
             {
+                //_context.Encuesta.Where(e => e.Id == respuesta.id).Include(e => e.Pregunta).FirstOrDefault();
                 _context.Respuesta.Add(respuesta);
                 _context.SaveChanges();
                 return true;
@@ -41,11 +44,11 @@ namespace Back.Services
             }
         }
 
-        public bool delEncuesta(string nombre)
+        public bool delEncuesta(int id)
         {
             try
             {
-                Encuestum encuesta = _context.Encuesta.Where(e => e.Nombre == nombre).FirstOrDefault();
+                Encuestum encuesta = _context.Encuesta.Where(e => e.Id == id).FirstOrDefault();
                 _context.Encuesta.Remove(encuesta);
                 _context.SaveChanges();
                 return true;
@@ -57,11 +60,11 @@ namespace Back.Services
             }
         }
 
-        public Encuestum getEncuesta(string nombre)
+        public Encuestum getEncuesta(int id)
         {
             try
             {
-                return _context.Encuesta.Where(e => e.Nombre == nombre).FirstOrDefault();
+                return _context.Encuesta.Where(e => e.Id == id).Include(e => e.Pregunta).FirstOrDefault();
             }
             catch (Exception e)
             {
@@ -83,24 +86,11 @@ namespace Back.Services
             }
         }
 
-        public IEnumerable<Respuestum> getRespuestas(string nombre)
-        {
-            try
-            {
-                return (IEnumerable<Respuestum>)_context.Respuesta.Where(e => e.NombreEncuesta == nombre).FirstOrDefault();
-            }
-            catch (Exception e)
-            {
-                //throw e;
-                return null;
-            }
-        }
-
         public bool updateEncuesta(Encuestum encuesta)
         {
             try
             {
-                Encuestum encuestaAntigua = _context.Encuesta.Where(e => e.Nombre == encuesta.Nombre).Include(e => e.Pregunta).FirstOrDefault();
+                Encuestum encuestaAntigua = _context.Encuesta.Where(e => e.Id == encuesta.Id).Include(e => e.Pregunta).FirstOrDefault();
 
                 encuestaAntigua.Descripcion = encuesta.Descripcion;
                 encuestaAntigua.Pregunta = encuesta.Pregunta;

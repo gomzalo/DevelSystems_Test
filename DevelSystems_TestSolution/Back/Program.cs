@@ -1,10 +1,12 @@
 using Back.Models;
+using Back.Models.DB;
 using Back.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +46,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<InterfaceEncuesta, ImplementacionEncuesta>();
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddDbContext<ENCUESTAS_DSContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
 options => options.EnableRetryOnFailure()));
 var app = builder.Build();

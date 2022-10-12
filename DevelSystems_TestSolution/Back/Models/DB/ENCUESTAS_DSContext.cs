@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Back.Models
+namespace Back.Models.DB
 {
     public partial class ENCUESTAS_DSContext : DbContext
     {
@@ -33,14 +33,9 @@ namespace Back.Models
         {
             modelBuilder.Entity<Encuestum>(entity =>
             {
-                entity.HasKey(e => e.Nombre)
-                    .HasName("PK__encuesta__75E3EFCEDD4D10C7");
-
                 entity.ToTable("encuesta");
 
-                entity.Property(e => e.Nombre)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Descripcion)
                     .HasMaxLength(200)
@@ -49,23 +44,23 @@ namespace Back.Models
                 entity.Property(e => e.Link)
                     .HasMaxLength(250)
                     .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Preguntum>(entity =>
-            {
-                entity.HasKey(e => new { e.Nombre, e.NombreEncuesta })
-                    .HasName("PK__pregunta__C7BBD066DA12B3A2");
-
-                entity.ToTable("pregunta");
 
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(100)
                     .IsUnicode(false);
+            });
 
-                entity.Property(e => e.NombreEncuesta)
+            modelBuilder.Entity<Preguntum>(entity =>
+            {
+                entity.ToTable("pregunta");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.IdEncuesta).HasColumnName("ID_Encuesta");
+
+                entity.Property(e => e.Nombre)
                     .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("Nombre_Encuesta");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Requerido)
                     .HasMaxLength(1)
@@ -80,39 +75,36 @@ namespace Back.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.NombreEncuestaNavigation)
+                entity.HasOne(d => d.IdEncuestaNavigation)
                     .WithMany(p => p.Pregunta)
-                    .HasForeignKey(d => d.NombreEncuesta)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__pregunta__Nombre__38996AB5");
+                    .HasForeignKey(d => d.IdEncuesta)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__pregunta__ID_Enc__01142BA1");
             });
 
             modelBuilder.Entity<Respuestum>(entity =>
             {
-                entity.HasKey(e => new { e.NombrePregunta, e.NombreEncuesta })
-                    .HasName("PK__respuest__A422B16F175619D9");
-
                 entity.ToTable("respuesta");
 
-                entity.Property(e => e.NombrePregunta)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("Nombre_Pregunta");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.NombreEncuesta)
-                    .HasMaxLength(100)
-                    .IsUnicode(false)
-                    .HasColumnName("Nombre_Encuesta");
+                entity.Property(e => e.IdEncuesta).HasColumnName("ID_Encuesta");
+
+                entity.Property(e => e.IdPregunta).HasColumnName("ID_Pregunta");
 
                 entity.Property(e => e.Respuesta)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Nombre)
-                    .WithOne(p => p.Respuestum)
-                    .HasForeignKey<Respuestum>(d => new { d.NombrePregunta, d.NombreEncuesta })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__respuesta__3B75D760");
+                entity.HasOne(d => d.IdEncuestaNavigation)
+                    .WithMany(p => p.Respuesta)
+                    .HasForeignKey(d => d.IdEncuesta)
+                    .HasConstraintName("FK__respuesta__ID_En__04E4BC85");
+
+                entity.HasOne(d => d.IdPreguntaNavigation)
+                    .WithMany(p => p.Respuesta)
+                    .HasForeignKey(d => d.IdPregunta)
+                    .HasConstraintName("FK__respuesta__ID_Pr__03F0984C");
             });
 
             OnModelCreatingPartial(modelBuilder);
