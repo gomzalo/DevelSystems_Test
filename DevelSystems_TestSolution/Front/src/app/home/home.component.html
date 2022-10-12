@@ -1,0 +1,15 @@
+<h1>Inicio</h1>
+
+<br />
+<div *ngIf="isUserAuthenticated()" style="color:mediumpurple;">
+  <h2>
+    ¡Bienvenido!
+  </h2>
+</div>
+
+<br />
+<ul>
+  <li><a routerlink="/crear">Crear encuesta</a></li>
+  <li *ngIf="!isUserAuthenticated()"><a routerlink="/login">Iniciar sesión</a></li>
+  <li *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Cerrar sesión</a></li>
+</ul>

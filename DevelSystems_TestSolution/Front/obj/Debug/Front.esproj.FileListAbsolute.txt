@@ -1,0 +1,2 @@
+F:\Documents\GitHub\Applies\Devel Systems\DevelSystems_Test\DevelSystems_TestSolution\Front\obj\Debug\Front.esproj.SuggestedBindingRedirects.cache
+F:\Documents\GitHub\Applies\Devel Systems\DevelSystems_Test\DevelSystems_TestSolution\Front\obj\Debug\Front.esproj.CoreCompileInputs.cache

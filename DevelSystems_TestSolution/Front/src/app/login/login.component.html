@@ -1,0 +1,18 @@
+<div class="container">
+  <form class="example-form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <h2 class="form-signin-heading">Login</h2>
+    <div *ngIf="invalidLogin" class="alert alert-danger">¡Nombre de usuario o contraseña inválida!</div>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput type="text" id="username" name="username" [(ngModel)]="credentials.username" ngModel class="form-control" placeholder="Nombre de usuario" required autofocus>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" id="password" name="password" [(ngModel)]="credentials.password" ngModel class="form-control" placeholder="Contraseña" required>
+      <br />
+    </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Ingresar</button>
+  </form>
+</div>
