@@ -18,7 +18,7 @@ namespace Back.Controllers
 
             if (user.Username == "admin" && user.Password == "admin")
             {
-                return Ok(new { Token = "This is your token" });
+                return Ok(new { Token = "This is your token, this is a test." });
             }
 
             return Unauthorized();

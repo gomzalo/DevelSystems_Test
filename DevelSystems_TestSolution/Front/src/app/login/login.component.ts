@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthenticatedResponse } from './../_interfaces/auth-res.model';
 import { LoginModel } from './../_interfaces/login.model';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   invalidLogin: boolean = false;
   credentials: LoginModel = { username: '', password: '' };
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -31,8 +32,27 @@ export class LoginComponent implements OnInit {
             this.invalidLogin = false;
             this.router.navigate(['/']);
           },
-          error: (err: HttpErrorResponse) => this.invalidLogin = true
+          error: (err: HttpErrorResponse) => {
+            this.invalidLogin = true;
+            this.openDialog("0ms", "0ms");
+          }
         })
     }
   }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogAlerta, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+}
+
+@Component({
+  selector: 'dialog-alert',
+  templateUrl: 'dialog-alert.html',
+})
+export class DialogAlerta {
+  constructor(public dialogRef: MatDialogRef<DialogAlerta>) { }
 }

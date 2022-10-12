@@ -1,15 +1,18 @@
-<h1>Inicio</h1>
-
-<br />
 <div *ngIf="isUserAuthenticated()" style="color:mediumpurple;">
-  <h2>
-    ¡Bienvenido!
-  </h2>
+  <mat-tab-group>
+    <mat-tab label="Crear"> Crear </mat-tab>
+    <mat-tab label="Consultar"> Consultar </mat-tab>
+    <mat-tab label="Editar"> Editar </mat-tab>
+  </mat-tab-group>
 </div>
 
-<br />
-<ul>
-  <li><a routerlink="/crear">Crear encuesta</a></li>
-  <li *ngIf="!isUserAuthenticated()"><a routerlink="/login">Iniciar sesión</a></li>
-  <li *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Cerrar sesión</a></li>
-</ul>
+<div class="buttons-area">
+  <div *ngIf="!isUserAuthenticated()" style="color:mediumpurple;">
+    <button mat-raised-button color="primary" type="submit" (click)="accessLogin()">Ingresar</button>
+  </div>
+  <mat-card>
+  </mat-card>
+</div>
+
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>

@@ -1,2 +1,22 @@
-body {
+.form-heading {
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+/*.signin-area {
+  grid-area: signin;
+}
+*/
+.my-form {
+  display: flex;
+  border-radius: 4px;
+  padding: 5.8em;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.signin-area {
+  grid-area: signin;
 }

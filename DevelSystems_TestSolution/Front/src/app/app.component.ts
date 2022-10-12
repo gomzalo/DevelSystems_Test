@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,20 +8,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  //public forecasts?: WeatherForecast[];
 
-  //constructor(http: HttpClient) {
-  //  http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-  //    this.forecasts = result;
-  //  }, error => console.error(error));
-  //}
+  constructor(private jwtHelper: JwtHelperService, private router: Router) { }
 
-  //title = 'Front';
+  ngOnInit(): void { }
+
+  isUserAuthenticated = (): boolean => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      return !this.jwtHelper.isTokenExpired(token);
+    }
+    return false;
+  }
+
+  goHome= () => {
+    this.router.navigateByUrl('/');
+  }
+
+  logOut = () => {
+    localStorage.removeItem('jwt');
+  }
 }
-
-//interface WeatherForecast {
-//  date: string;
-//  temperatureC: number;
-//  temperatureF: number;
-//  summary: string;
-//}

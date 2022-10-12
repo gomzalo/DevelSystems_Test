@@ -1,1 +1,14 @@
+<div class="header-area">
+  <mat-toolbar>
+    <button mat-raised color="accent">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="goHome()" fontIcon="home"></mat-icon>
+    </button>
+    <span>ACME - ENCUESTAS</span>
+    <div *ngIf="isUserAuthenticated()" style="color:mediumpurple;">
+      <div class="buttons-area">
+        <button mat-raised-button color="warn" type="submit" (click)="logOut()">Cerrar sesión</button>
+      </div>
+    </div>
+</mat-toolbar>
+</div>
 <router-outlet></router-outlet>

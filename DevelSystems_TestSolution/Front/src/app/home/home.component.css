@@ -1,0 +1,12 @@
+.wrapper {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  /*grid-row-gap: 2em;*/
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+    "header header buttons"
+    "content content"
+    "footer footer footer";
+}
